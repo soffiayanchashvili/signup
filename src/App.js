@@ -1,23 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+
+
+
+
 
 function App() {
+  const [emailaddres, setEmailAddres] = useState ("")
+  const [password, setPassword] = useState ("")
+
+  const handleSubmit = () => {
+    if (emailaddres.trim().length === 0 || password.trim().length === 0){
+      return alert ('შეავსეთ ყველა ველი')
+    }
+
+    if (password.length < 8) {
+      return alert ('პაროლი უნდა შეიცავდეს მინიმუმ 8 სიმბოლოს')
+    }
+
+    console.log(emailaddres, password);
+  }
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='signIn'>
+        <h3>Create An Account</h3>
+        <p>Create an account to enjoy all the services without any ads for free!</p>
+        <input type='email' placeholder='Email Address' onChange={(e) => setEmailAddres(e.target.value)}/>
+        <input type='password' placeholder='Password'onChange={(e) => setPassword(e.target.value)}/>
+        <button onClick={handleSubmit}>Create Account</button>
+        <p>Already Have An Account? <a href='#'>Sign In</a></p>
+      </div>
     </div>
   );
 }
